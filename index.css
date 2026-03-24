@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  background: #140513;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.retro-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(244, 114, 182, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 114, 182, 0.28) 1px, transparent 1px),
+    radial-gradient(circle at 50% 12%, rgba(244, 114, 182, 0.52), rgba(21, 4, 22, 0.55) 56%);
+  background-size: 42px 42px, 42px 42px, 100% 100%;
+  transform: perspective(700px) rotateX(60deg) scale(1.65) translateY(24%);
+  transform-origin: bottom;
+  opacity: 0.75;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.045) 1px,
+    transparent 2px,
+    transparent 5px
+  );
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.retro-scene {
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  border: 1px solid rgba(249, 168, 212, 0.45);
+  background: radial-gradient(circle at 50% 20%, rgba(244, 114, 182, 0.34), rgba(30, 3, 34, 0.85));
+}
+
+.retro-cube {
+  position: relative;
+  height: 138px;
+  width: 138px;
+  transform-style: preserve-3d;
+  animation: cube-spin 14s linear infinite;
+}
+
+.retro-cube.paused {
+  animation-play-state: paused;
+}
+
+.cube-face {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  height: 138px;
+  width: 138px;
+  border: 1px solid rgba(249, 168, 212, 0.82);
+  background: rgba(58, 8, 47, 0.78);
+  color: #fce7f3;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 14px rgba(244, 114, 182, 0.75);
+}
+
+.cube-front {
+  transform: translateZ(69px);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(69px);
+}
+
+.cube-left {
+  transform: rotateY(-90deg) translateZ(69px);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(69px);
+}
+
+.cube-top {
+  transform: rotateX(90deg) translateZ(69px);
+}
+
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(69px);
+}
+
+@keyframes cube-spin {
+  0% {
+    transform: rotateX(-18deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-18deg) rotateY(360deg);
+  }
+}
+
+.schematic-surface {
+  background:
+    radial-gradient(circle at 20% 16%, rgba(244, 114, 182, 0.24), transparent 42%),
+    radial-gradient(circle at 80% 78%, rgba(232, 121, 249, 0.22), transparent 38%),
+    linear-gradient(145deg, rgba(34, 2, 30, 0.95), rgba(20, 3, 24, 0.94));
+}
+
+.pulse-path {
+  stroke-dasharray: 9 7;
+  animation: path-drift 6s linear infinite;
+}
+
+.pink-mode {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(244, 114, 182, 0.2), transparent 34%),
+    radial-gradient(circle at 82% 0%, rgba(232, 121, 249, 0.14), transparent 36%),
+    #150716;
+}
+
+.pink-mode [class*="text-cyan-"] {
+  color: #fbcfe8 !important;
+}
+
+.pink-mode [class*="border-cyan-"] {
+  border-color: rgba(244, 114, 182, 0.5) !important;
+}
+
+.pink-mode [class*="bg-cyan-"] {
+  background-color: rgba(244, 114, 182, 0.22) !important;
+}
+
+.pink-mode [class*="fill-cyan-"] {
+  fill: #fce7f3 !important;
+}
+
+@keyframes path-drift {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -96;
+  }
+}
